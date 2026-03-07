@@ -1,2 +1,173 @@
-# parades.github.ozy
-BOT WEBSITE
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WEBBOT GENERATOR AI</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+header{
+background:#020617;
+padding:20px;
+text-align:center;
+font-size:28px;
+color:#38bdf8;
+}
+
+.container{
+width:90%;
+margin:auto;
+margin-top:20px;
+}
+
+textarea{
+width:100%;
+height:120px;
+border-radius:8px;
+border:none;
+padding:10px;
+}
+
+button{
+background:#38bdf8;
+border:none;
+padding:12px 25px;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+font-weight:bold;
+}
+
+.result{
+background:#020617;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+}
+
+iframe{
+width:100%;
+height:350px;
+border:none;
+background:white;
+margin-top:15px;
+}
+
+.codebox{
+background:black;
+padding:15px;
+margin-top:15px;
+border-radius:8px;
+overflow:auto;
+color:#00ff9c;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+WEBBOT GENERATOR AI
+</header>
+
+<div class="container">
+
+<h3>Perintah Website</h3>
+
+<textarea id="prompt" placeholder="Contoh: Buatkan website club DJ modern dengan tombol kontak"></textarea>
+
+<br>
+
+<button onclick="generate()">Generate Website</button>
+
+<div class="result" id="info">
+Menunggu perintah...
+</div>
+
+<iframe id="preview"></iframe>
+
+<div class="codebox" id="code"></div>
+
+</div>
+
+<script>
+
+function generate(){
+
+var prompt=document.getElementById("prompt").value;
+
+var html=`<!DOCTYPE html>
+<html>
+<head>
+<title>Generated Website</title>
+<style>
+body{
+font-family:Arial;
+background:#f1f5f9;
+text-align:center;
+padding:40px;
+}
+h1{
+color:#0ea5e9;
+}
+button{
+background:#0ea5e9;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Website Generated</h1>
+
+<p>${prompt}</p>
+
+<p>Website ini dibuat otomatis oleh WEBBOT GENERATOR AI</p>
+
+<button>Contact</button>
+
+</body>
+</html>`;
+
+document.getElementById("preview").srcdoc=html;
+
+document.getElementById("code").textContent=html;
+
+document.getElementById("info").innerHTML=`
+
+<b>Website berhasil dibuat</b>
+
+Fitur:
+- Responsive Design
+- Mobile Friendly
+- Clean UI
+- Fast Loading
+
+Perintah AI:
+"${prompt}"
+
+Preview website sudah muncul di bawah.
+Kode HTML juga tersedia jika ingin di download atau digunakan.
+
+`;
+
+}
+
+</script>
+
+</body>
+  </html>
