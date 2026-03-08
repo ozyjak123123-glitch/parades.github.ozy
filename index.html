@@ -1,72 +1,251 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+
 <meta charset="UTF-8">
-<title>WEBBOT GENERATOR AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>OZYWEB</title>
 
 <style>
 
-body{
-background:#0f172a;
-color:white;
-font-family:Arial;
-margin:0;
+/* ===== GLOBAL ===== */
+
+*{
+box-sizing:border-box;
 }
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:black;
+color:white;
+text-align:center;
+}
+
+/* ===== HEADER ===== */
 
 header{
-background:#020617;
-padding:20px;
-text-align:center;
-font-size:28px;
-color:#38bdf8;
+
+background:linear-gradient(90deg,#00c6ff,#7b00ff);
+
+padding:25px;
+
+border-bottom:5px solid black;
+
 }
+
+header h1{
+
+margin:0;
+
+font-size:40px;
+
+color:red;
+
+text-shadow:
+2px 2px 0 black,
+4px 4px 0 black;
+
+}
+
+/* ===== CONTAINER ===== */
 
 .container{
-width:90%;
+
+padding:20px;
+
+max-width:500px;
+
 margin:auto;
-margin-top:20px;
+
 }
+
+/* ===== TITLE ===== */
+
+.title{
+
+font-size:28px;
+
+color:red;
+
+margin-bottom:20px;
+
+text-shadow:2px 2px black;
+
+}
+
+/* ===== MENU BUTTON ===== */
+
+.menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.menu button{
+
+padding:18px;
+
+font-size:22px;
+
+font-weight:bold;
+
+background:#eaeaea;
+
+color:#00ffff;
+
+border-radius:40px;
+
+border:4px solid black;
+
+text-shadow:1px 1px black;
+
+box-shadow:0 5px 0 black;
+
+transition:0.2s;
+
+}
+
+.menu button:active{
+
+transform:translateY(5px);
+
+box-shadow:0 0 0 black;
+
+}
+
+/* ===== FEATURE PANEL ===== */
+
+.feature{
+
+display:none;
+
+margin-top:20px;
+
+padding:20px;
+
+background:#19d3d6;
+
+border:5px solid black;
+
+border-radius:15px;
+
+animation:fade 0.3s ease;
+
+}
+
+@keyframes fade{
+
+from{opacity:0; transform:scale(0.9);}
+to{opacity:1; transform:scale(1);}
+
+}
+
+/* ===== INPUT ===== */
+
+input{
+
+width:100%;
+
+padding:15px;
+
+margin-top:10px;
+
+font-size:18px;
+
+border:4px solid black;
+
+border-radius:8px;
+
+}
+
+/* ===== TEXTAREA ===== */
 
 textarea{
+
 width:100%;
+
 height:120px;
-border-radius:8px;
-border:none;
+
 padding:10px;
+
+margin-top:10px;
+
+font-size:16px;
+
+border:4px solid black;
+
+border-radius:8px;
+
 }
 
-button{
-background:#38bdf8;
-border:none;
-padding:12px 25px;
-border-radius:8px;
-cursor:pointer;
-margin-top:10px;
+/* ===== ACTION BUTTON ===== */
+
+.action{
+
+margin-top:15px;
+
+background:red;
+
+color:white;
+
+font-size:20px;
+
+padding:15px;
+
+border-radius:10px;
+
+border:4px solid black;
+
 font-weight:bold;
+
+box-shadow:0 5px 0 black;
+
 }
+
+.action:active{
+
+transform:translateY(5px);
+
+box-shadow:0 0 0 black;
+
+}
+
+/* ===== RESULT BOX ===== */
 
 .result{
-background:#020617;
-padding:20px;
-margin-top:20px;
-border-radius:10px;
-}
 
-iframe{
-width:100%;
-height:350px;
-border:none;
+margin-top:10px;
+
 background:white;
-margin-top:15px;
+
+color:black;
+
+padding:10px;
+
+border:4px solid black;
+
+border-radius:8px;
+
+min-height:80px;
+
+font-weight:bold;
+
 }
 
-.codebox{
-background:black;
-padding:15px;
-margin-top:15px;
-border-radius:8px;
-overflow:auto;
-color:#00ff9c;
+footer{
+
+margin-top:40px;
+
+font-size:12px;
+
+opacity:0.7;
+
 }
 
 </style>
@@ -76,98 +255,155 @@ color:#00ff9c;
 <body>
 
 <header>
-WEBBOT GENERATOR AI
+<h1>OZYWEB</h1>
 </header>
 
 <div class="container">
 
-<h3>Perintah Website</h3>
+<div class="title">Kirim Ke Target</div>
 
-<textarea id="prompt" placeholder="Contoh: Buatkan website club DJ modern dengan tombol kontak"></textarea>
+<div class="menu">
 
-<br>
+<button onclick="openFeature('send')">
+Kirim Pesan
+</button>
 
-<button onclick="generate()">Generate Website</button>
+<button onclick="openFeature('lookup')">
+Cari Informasi
+</button>
 
-<div class="result" id="info">
-Menunggu perintah...
+<button onclick="openFeature('control')">
+Control Panel
+</button>
+
 </div>
 
-<iframe id="preview"></iframe>
+<!-- ===== FEATURE 1 ===== -->
 
-<div class="codebox" id="code"></div>
+<div id="send" class="feature">
+
+<h3>ISI NOMOR TARGET</h3>
+
+<input id="targetNumber" placeholder="Masukkan nomor">
+
+<button class="action" onclick="sendAction()">
+Kirim
+</button>
+
+<div class="result" id="sendResult">
+Menunggu aksi...
+</div>
+
+</div>
+
+<!-- ===== FEATURE 2 ===== -->
+
+<div id="lookup" class="feature">
+
+<h3>ISI NOMOR TARGET</h3>
+
+<input id="lookupNumber" placeholder="Masukkan nomor">
+
+<button class="action" onclick="lookupAction()">
+Cari Data
+</button>
+
+<div class="result" id="lookupResult">
+Belum ada hasil
+</div>
+
+</div>
+
+<!-- ===== FEATURE 3 ===== -->
+
+<div id="control" class="feature">
+
+<h3>Google Target</h3>
+
+<input id="controlInput" placeholder="Masukkan kata kunci">
+
+<button class="action" onclick="controlAction()">
+Control
+</button>
+
+<div class="result" id="controlResult">
+Panel siap digunakan
+</div>
+
+</div>
+
+<footer>
+OZYWEB SYSTEM
+</footer>
 
 </div>
 
 <script>
 
-function generate(){
+/* ===== OPEN FEATURE ===== */
 
-var prompt=document.getElementById("prompt").value;
+function openFeature(id){
 
-var html=`<!DOCTYPE html>
-<html>
-<head>
-<title>Generated Website</title>
-<style>
-body{
-font-family:Arial;
-background:#f1f5f9;
-text-align:center;
-padding:40px;
+let panels=document.querySelectorAll(".feature")
+
+panels.forEach(p=>{
+p.style.display="none"
+})
+
+document.getElementById(id).style.display="block"
+
 }
-h1{
-color:#0ea5e9;
+
+/* ===== SEND ACTION ===== */
+
+function sendAction(){
+
+let num=document.getElementById("targetNumber").value
+
+if(num==""){
+
+alert("Nomor harus diisi")
+
+return
+
 }
-button{
-background:#0ea5e9;
-color:white;
-border:none;
-padding:10px 20px;
-border-radius:6px;
-cursor:pointer;
+
+document.getElementById("sendResult").innerText=
+"Permintaan dikirim ke: "+num+" (demo UI)"
+
 }
-</style>
-</head>
 
-<body>
+/* ===== LOOKUP ACTION ===== */
 
-<h1>Website Generated</h1>
+function lookupAction(){
 
-<p>${prompt}</p>
+let num=document.getElementById("lookupNumber").value
 
-<p>Website ini dibuat otomatis oleh WEBBOT GENERATOR AI</p>
+if(num==""){
 
-<button>Contact</button>
+alert("Nomor harus diisi")
 
-</body>
-</html>`;
+return
 
-document.getElementById("preview").srcdoc=html;
+}
 
-document.getElementById("code").textContent=html;
+document.getElementById("lookupResult").innerText=
+"Mencari data untuk "+num+"...\n(API belum terhubung)"
 
-document.getElementById("info").innerHTML=`
+}
 
-<b>Website berhasil dibuat</b>
+/* ===== CONTROL ACTION ===== */
 
-Fitur:
-- Responsive Design
-- Mobile Friendly
-- Clean UI
-- Fast Loading
+function controlAction(){
 
-Perintah AI:
-"${prompt}"
+let val=document.getElementById("controlInput").value
 
-Preview website sudah muncul di bawah.
-Kode HTML juga tersedia jika ingin di download atau digunakan.
-
-`;
+document.getElementById("controlResult").innerText=
+"Control dijalankan untuk: "+val+" (demo)"
 
 }
 
 </script>
 
 </body>
-  </html>
+</html>
